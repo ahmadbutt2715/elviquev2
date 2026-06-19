@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Product — Elvique</title>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="stylesheet.css" />
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <div class="logo">
+    <span class="logo-icon">
+      <span></span><span></span><span></span><span></span>
+    </span>
+    Elvi<span>que</span>
+  </div>
+  <ul class="nav-links">
+    <li><a href="index.html#home">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <div class="nav-right-group">
+    <button class="nav-cart-btn" onclick="toggleCartDrawer(true)" aria-label="Open Cart">
+      <span class="nav-cart-icon">🛍️</span>
+      <span class="nav-cart-badge" id="cartBadge">0</span>
+    </button>
+    <button class="nav-cta" onclick="window.location.href='index.html#products'">Shop Now</button>
+    <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+  </div>
+</nav>
+
+<!-- PRODUCT DETAIL -->
+<section id="product-detail">
+  <div class="blob b1"></div>
+  <div class="blob b2"></div>
+
+  <div class="product-detail-wrap">
+
+
+    <div class="product-detail-grid">
+      <div class="product-detail-gallery">
+        <div class="product-detail-img" id="productMainImage"></div>
+        <span class="product-badge product-detail-badge" id="productBadge" style="display:none;"></span>
+      </div>
+
+      <div class="product-detail-info">
+        <div class="product-detail-cat" id="productCat"></div>
+        <h1 class="product-detail-title" id="productTitle"></h1>
+        <div class="product-detail-price" id="productPrice"></div>
+        <p class="product-detail-desc" id="productDesc"></p>
+
+        <div class="product-detail-options" id="productSizes" style="display:none;">
+          <label>Size</label>
+          <div class="option-pills" id="sizePills"></div>
+        </div>
+
+        <div class="product-detail-options" id="productColors" style="display:none;">
+          <label>Color</label>
+          <div class="option-pills" id="colorPills"></div>
+        </div>
+
+        <div class="product-detail-actions">
+          <button class="product-detail-cart-btn" id="addToCartBtn">Add to Cart</button>
+          <button class="product-detail-wish-btn" id="wishBtn" onclick="toggleWish(this)">🤍</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="logo footer-brand">
+        <span class="logo-icon"><span></span><span></span><span></span><span></span></span>
+        Elvi<span>que</span>
+      </div>
+      <p class="footer-desc">Curating luxury fashion for the bold, the refined, and the unapologetically stylish.</p>
+      <div class="footer-social">
+        <a class="social-btn" href="#">𝕏</a>
+        <a class="social-btn" href="#">in</a>
+        <a class="social-btn" href="#">📸</a>
+        <a class="social-btn" href="#">▶</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Shop</h4>
+      <ul>
+        <li><a href="index.html#products">New Arrivals</a></li>
+        <li><a href="index.html#products">Bags & Totes</a></li>
+        <li><a href="index.html#products">Footwear</a></li>
+        <li><a href="index.html#products">Jewelry</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="#">Careers</a></li>
+        <li><a href="#">Sustainability</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Help</h4>
+      <ul>
+        <li><a href="#">FAQ</a></li>
+        <li><a href="#">Shipping Info</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Elvique. All rights reserved.</span>
+    <span>Privacy Policy · Terms of Service</span>
+  </div>
+</footer>
+
+<!-- CART TOAST -->
+<div class="cart-toast" id="cartToast">
+  <div class="toast-icon">🛍️</div>
+  <div class="toast-text">Added <strong id="toastName"></strong> to your cart!</div>
+</div>
+
+<!-- CART OVERLAY & DRAWER -->
+<div class="cart-overlay" id="cartOverlay" onclick="toggleCartDrawer(false)"></div>
+<div class="cart-drawer" id="cartDrawer">
+  <div class="cart-drawer-header">
+    <h3>Your Cart (<span id="cartCountHeader">0</span>)</h3>
+    <button class="cart-drawer-close" onclick="toggleCartDrawer(false)" aria-label="Close Cart">✕</button>
+  </div>
+  <div class="cart-drawer-items" id="cartDrawerItems"></div>
+  <div class="cart-drawer-footer">
+    <div class="cart-total-row">
+      <span>Subtotal</span>
+      <span id="cartSubtotal">Rs. 0</span>
+    </div>
+    <button class="checkout-btn" onclick="checkoutCart()">Proceed to Checkout</button>
+    <button class="clear-cart-btn" onclick="clearCart()">Clear Cart</button>
+  </div>
+</div>
+
+<script src="script.js"></script>
+<script src="product.js"></script>
+</body>
+</html>

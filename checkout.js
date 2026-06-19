@@ -32,7 +32,7 @@ function renderCheckoutSummary() {
   } else {
     container.innerHTML = cart.map(item => `
       <div class="summary-item">
-        <div class="summary-item-emoji">${item.emoji}</div>
+        <div class="summary-item-emoji">${item.image ? `<img src="${item.image}" alt="${item.name}" style="width:100%; height:100%; object-fit:cover; border-radius:8px;">` : item.emoji}</div>
         <div class="summary-item-details">
           <div class="summary-item-name">${item.name}</div>
           <div class="summary-item-qty-price">${item.quantity} × Rs. ${item.price.toLocaleString()}</div>

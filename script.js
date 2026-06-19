@@ -5,33 +5,37 @@
 
 /* ── PRODUCTS DATA ── */
 const products = [
-  { id:1, name:'Signature Tote Bag', cat:'bags', emoji:'👜', price:8500, oldPrice:11000, badge:'New', badgeClass:'new' },
-  { id:2, name:'Luxe Crossbody', cat:'bags', emoji:'👝', price:5500, oldPrice:7200, badge:'Sale', badgeClass:'sale' },
-  { id:3, name:'Leather Clutch', cat:'bags', emoji:'💼', price:3800, badge:'', badgeClass:'' },
-  { id:4, name:'Sneakers Pro X', cat:'shoes', emoji:'👟', price:6500, oldPrice:8500, badge:'Hot', badgeClass:'sale' },
-  { id:5, name:'Block Heel Pumps', cat:'shoes', emoji:'👠', price:4200, badge:'New', badgeClass:'new' },
-  { id:6, name:'Diamond Ring', cat:'jewelry', emoji:'💍', price:45000, badge:'Exclusive', badgeClass:'' },
-  { id:7, name:'Gold Layered Chain', cat:'jewelry', emoji:'📿', price:12500, oldPrice:16000, badge:'Sale', badgeClass:'sale' },
-  { id:8, name:'Oversized Sunglasses', cat:'accessories', emoji:'🕶️', price:2200, badge:'New', badgeClass:'new' },
+  { id:1, name:'Signature Tote Bag', cat:'bags', emoji:'👜', image:'images/signature_tote_bag.png', price:8500, oldPrice:11000, badge:'New', badgeClass:'new', description:'Premium handcrafted leather tote with gold-tone hardware. Spacious interior fits daily essentials with an interior zip pocket.', sizes:['One Size'], colors:['Black','Tan'] },
+  { id:2, name:'Luxe Crossbody', cat:'bags', emoji:'👝', image:'images/luxe_crossbody.png', price:5500, oldPrice:7200, badge:'Sale', badgeClass:'sale', description:'Compact crossbody crafted from soft pebbled leather. Adjustable strap and magnetic flap closure for effortless everyday elegance.', sizes:['One Size'], colors:['Burgundy','Black'] },
+  { id:3, name:'Leather Clutch', cat:'bags', emoji:'💼', image:'images/leather_clutch.png', price:3800, badge:'', badgeClass:'', description:'Sleek evening clutch in smooth calf leather. Slim profile with a detachable wrist strap — perfect for nights out.', sizes:['One Size'], colors:['Black','Gold'] },
+  { id:4, name:'Sneakers Pro X', cat:'shoes', emoji:'👟', image:'images/sneakers_pro_x.png', price:6500, oldPrice:8500, badge:'Hot', badgeClass:'sale', description:'Lightweight performance sneakers with cushioned sole and breathable mesh upper. Street-ready style meets all-day comfort.', sizes:['38','39','40','41','42'], colors:['White','Black'] },
+  { id:5, name:'Block Heel Pumps', cat:'shoes', emoji:'👠', image:'images/block_heel_pumps.png', price:4200, badge:'New', badgeClass:'new', description:'Classic block heel pumps in patent leather. Stable 7cm heel and padded insole for confident, comfortable wear.', sizes:['36','37','38','39','40'], colors:['Nude','Black'] },
+  { id:6, name:'Diamond Ring', cat:'jewelry', emoji:'💍', image:'images/diamond_ring.png', price:45000, badge:'Exclusive', badgeClass:'', description:'Exquisite solitaire ring set in 18k white gold with a brilliant-cut center stone. A timeless symbol of elegance.', sizes:['6','7','8','9'], colors:['White Gold'] },
+  { id:7, name:'Gold Layered Chain', cat:'jewelry', emoji:'📿', image:'images/gold_layered_chain.png', price:12500, oldPrice:16000, badge:'Sale', badgeClass:'sale', description:'Delicate triple-layer chain necklace in 14k gold vermeil. Adjustable length for versatile layering.', sizes:['16"','18"','20"'], colors:['Gold'] },
+  { id:8, name:'Oversized Sunglasses', cat:'accessories', emoji:'🕶️', image:'images/oversized_sunglasses.png', price:2200, badge:'New', badgeClass:'new', description:'Bold oversized frames with UV400 protection lenses. Acetate construction with a sculpted silhouette.', sizes:['One Size'], colors:['Black','Tortoise'] },
 ];
+
+function goToProduct(id) {
+  window.location.href = `product.html?id=${id}`;
+}
 
 function renderProducts(filter) {
   const grid = document.getElementById('productsGrid');
   if (!grid) return; // products grid only exists on index.html
   const list = filter === 'all' ? products : products.filter(p => p.cat === filter);
   grid.innerHTML = list.map(p => `
-    <div class="product-card" data-cat="${p.cat}">
+    <div class="product-card" data-cat="${p.cat}" onclick="goToProduct(${p.id})">
       <div class="product-img">
-        <span>${p.emoji}</span>
+        ${p.image ? `<img src="${p.image}" alt="${p.name}">` : `<span>${p.emoji}</span>`}
         ${p.badge ? `<span class="product-badge ${p.badgeClass}">${p.badge}</span>` : ''}
-        <div class="product-wish" onclick="toggleWish(this)">🤍</div>
+        <div class="product-wish" onclick="event.stopPropagation(); toggleWish(this)">🤍</div>
       </div>
       <div class="product-info">
         <div class="product-cat">${p.cat}</div>
         <div class="product-name">${p.name}</div>
         <div class="product-footer">
           <div class="product-price">Rs. ${p.price.toLocaleString()}${p.oldPrice ? `<del>Rs. ${p.oldPrice.toLocaleString()}</del>` : ''}</div>
-          <button class="product-add" onclick="addToCart('${p.name}')">+</button>
+          <button class="product-add" onclick="event.stopPropagation(); addToCart('${p.name}')">+</button>
         </div>
       </div>
     </div>
@@ -162,7 +166,7 @@ function renderCart() {
   } else {
     container.innerHTML = cart.map(item => `
       <div class="cart-item">
-        <div class="cart-item-emoji">${item.emoji}</div>
+        <div class="cart-item-emoji">${item.image ? `<img src="${item.image}" alt="${item.name}" style="width:100%; height:100%; object-fit:cover; border-radius:8px;">` : item.emoji}</div>
         <div class="cart-item-details">
           <div class="cart-item-name">${item.name}</div>
           <div class="cart-item-price">Rs. ${item.price.toLocaleString()}</div>

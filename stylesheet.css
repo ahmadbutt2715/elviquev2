@@ -31,7 +31,7 @@
     }
 
     /* ── NAV ── */
-    nav {
+    nav#navbar {
       position: fixed;
       top: 0; left: 0; right: 0;
       z-index: 100;
@@ -333,6 +333,9 @@
     }
 
     /* ── PRODUCTS ── */
+    #products {
+      background: var(--card);
+    }
     #products .blob.b1 { width: 500px; height: 500px; background: var(--purple); right: -150px; top: 0; opacity: .15; }
 
     .products-header {
@@ -389,6 +392,11 @@
       justify-content: center;
       font-size: 4rem;
       position: relative;
+    }
+    .product-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
 
     .product-badge {
@@ -497,7 +505,7 @@
 
     /* ── FOOTER ── */
     footer {
-      background: var(--card);
+      background: var(--navy);
       border-top: 1px solid var(--border);
       padding: 3rem 5% 1.5rem;
     }
@@ -1199,6 +1207,149 @@
       transform: translateY(-1px);
     }
     
+    /* ── PRODUCT DETAIL PAGE ── */
+    #product-detail {
+      padding: 7.5rem 5% 4rem;
+      min-height: calc(100vh - 80px);
+      position: relative;
+    }
+
+    .product-detail-wrap {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .product-breadcrumb {
+      display: flex;
+      gap: .5rem;
+      font-size: .85rem;
+      color: var(--muted);
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+    }
+    .product-breadcrumb a { color: var(--muted); text-decoration: none; }
+    .product-breadcrumb a:hover { color: var(--white); }
+
+    .product-detail-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: start;
+    }
+
+    .product-detail-gallery { position: relative; }
+
+    .product-detail-img {
+      background: linear-gradient(135deg, #1a1535, #251e4a);
+      border-radius: 20px;
+      overflow: hidden;
+      aspect-ratio: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 6rem;
+    }
+    .product-detail-img img { width: 100%; height: 100%; object-fit: cover; }
+
+    .product-detail-badge {
+      position: absolute;
+      top: 16px;
+      left: 16px;
+    }
+
+    .product-detail-cat {
+      font-size: .75rem;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      color: var(--muted);
+      margin-bottom: .5rem;
+    }
+
+    .product-detail-title {
+      font-family: "Open Sans", sans-serif;
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    .product-detail-price {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+    }
+    .product-detail-price del {
+      color: var(--muted);
+      font-size: 1rem;
+      margin-left: .6rem;
+      font-weight: 400;
+    }
+
+    .product-detail-desc {
+      color: var(--muted);
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+    }
+
+    .product-detail-options { margin-bottom: 1.2rem; }
+    .product-detail-options label {
+      display: block;
+      font-size: .85rem;
+      font-weight: 600;
+      margin-bottom: .6rem;
+    }
+
+    .option-pills { display: flex; flex-wrap: wrap; gap: .5rem; }
+    .option-pill {
+      padding: .45rem 1rem;
+      border: 1px solid var(--border);
+      background: var(--card);
+      color: var(--white);
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: .85rem;
+      transition: border-color .2s, background .2s;
+    }
+    .option-pill.active,
+    .option-pill:hover {
+      border-color: var(--purple);
+      background: rgba(123,53,232,.15);
+    }
+
+    .product-detail-actions {
+      display: flex;
+      gap: 1rem;
+      margin: 2rem 0 1.5rem;
+    }
+
+    .product-detail-cart-btn {
+      flex: 1;
+      padding: 1rem;
+      background: linear-gradient(135deg, var(--purple), var(--pink));
+      border: none;
+      border-radius: 12px;
+      color: #fff;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform .15s;
+    }
+    .product-detail-cart-btn:hover { transform: translateY(-2px); }
+
+    .product-detail-wish-btn {
+      width: 52px;
+      height: 52px;
+      border: 1px solid var(--border);
+      background: var(--card);
+      border-radius: 12px;
+      font-size: 1.3rem;
+      cursor: pointer;
+    }
+
+    @media (max-width: 768px) {
+      .product-detail-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .product-detail-title { font-size: 1.5rem; }
+    }
+
     /* Additional responsive for checkout grid */
     @media (max-width: 900px) {
       .checkout-grid {
