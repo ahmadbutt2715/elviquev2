@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Elvique — Luxury Redefined</title>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="stylesheet.css" />
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <div class="logo">
+    <span class="logo-icon">
+      <span></span><span></span><span></span><span></span>
+    </span>
+    Elvi<span>que</span>
+  </div>
+  <ul class="nav-links">
+    <li><a href="index.html#home" class="active">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="index.html#products">Shop</a></li>
+    <li><a href="index.html#features">Features</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <button class="nav-cta" onclick="window.location.href='index.html#products'">Shop Now</button>
+  <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+</nav>
+
+<!-- HERO -->
+<section id="home">
+  <div class="blob b1"></div>
+  <div class="blob b2"></div>
+  <div class="blob b3"></div>
+  <div class="hero-inner">
+    <div class="hero-text reveal">
+      <div class="section-label">New Season — 2026</div>
+      <h1>Luxury Style,<br><em>Redefined</em><br>For You</h1>
+      <p>Discover curated collections that blend timeless elegance with modern design. Every piece tells a story — make yours unforgettable.</p>
+      <div class="hero-btns">
+        <a href="#products" class="btn-primary">Explore Collection</a>
+        <a href="about.html" class="btn-outline">Our Story</a>
+      </div>
+    </div>
+    <div class="hero-visual reveal">
+      <div class="blob-bg"></div>
+      <div class="blob-bg sm"></div>
+      <div class="phones">
+        <div class="phone-card main">
+          <div class="phone-screen">
+            <div class="ph-topbar"><div class="ph-dot"></div><div class="ph-time">9:41 AM</div></div>
+            <div class="ph-product">
+              <div class="ph-img">👜</div>
+              <div class="ph-badge">New Arrival</div>
+              <div class="ph-name">Designer Tote Bag</div>
+              <div class="ph-price">Rs. 8,500</div>
+              <div class="ph-btn">Add to Cart</div>
+            </div>
+          </div>
+        </div>
+        <div class="phone-card side">
+          <div class="phone-screen">
+            <div class="ph-topbar"><div class="ph-dot"></div><div class="ph-time">9:41 AM</div></div>
+            <div class="ph-list">
+              <div class="ph-list-item">
+                <div class="ph-list-dot">👟</div>
+                <div class="ph-list-info">
+                  <div class="ph-list-name">Sneakers Pro</div>
+                  <div class="ph-list-sub">Rs. 6,500</div>
+                </div>
+                <div class="ph-tag">HOT</div>
+              </div>
+              <div class="ph-list-item">
+                <div class="ph-list-dot">💍</div>
+                <div class="ph-list-info">
+                  <div class="ph-list-name">Gold Ring</div>
+                  <div class="ph-list-sub">Rs. 45,000</div>
+                </div>
+              </div>
+              <div class="ph-list-item">
+                <div class="ph-list-dot">🕶️</div>
+                <div class="ph-list-info">
+                  <div class="ph-list-name">Sunglasses</div>
+                  <div class="ph-list-sub">Rs. 2,200</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="stats-inner">
+    <div class="reveal"><div class="stat-num">12K+</div><div class="stat-label">Happy Customers</div></div>
+    <div class="reveal"><div class="stat-num">500+</div><div class="stat-label">Products</div></div>
+    <div class="reveal"><div class="stat-num">98%</div><div class="stat-label">Satisfaction Rate</div></div>
+    <div class="reveal"><div class="stat-num">4.9★</div><div class="stat-label">Average Rating</div></div>
+  </div>
+</div>
+<!-- PRODUCTS -->
+<section id="products">
+  <div class="blob b1"></div>
+  <div class="products-header reveal">
+    <div>
+      <div class="section-label">Our Collection</div>
+      <h2 class="section-title">Featured <em>Products</em></h2>
+    </div>
+    <div class="filter-tabs">
+      <button class="filter-tab active" onclick="filterProducts('all', this)">All</button>
+      <button class="filter-tab" onclick="filterProducts('bags', this)">Bags</button>
+      <button class="filter-tab" onclick="filterProducts('shoes', this)">Shoes</button>
+      <button class="filter-tab" onclick="filterProducts('jewelry', this)">Jewelry</button>
+      <button class="filter-tab" onclick="filterProducts('accessories', this)">Accessories</button>
+    </div>
+  </div>
+  <div class="products-grid" id="productsGrid"></div>
+</section>
+<!-- FEATURES -->
+<section id="features">
+  <div class="blob b1"></div>
+  <div class="features-inner">
+    <div class="reveal">
+      <div class="section-label">Why Elvique</div>
+      <h2 class="section-title">Shopping<br><em>Reimagined</em></h2>
+      <p class="section-sub">We've built an experience around you — seamless, secure, and styled to perfection.</p>
+      <div class="features-list">
+        <div class="feature-item">
+          <div class="fi-icon">🔒</div>
+          <div><div class="fi-title">Secure Checkout</div><div class="fi-desc">256-bit SSL encryption on every transaction. Your data stays yours.</div></div>
+        </div>
+        <div class="feature-item">
+          <div class="fi-icon">🚀</div>
+          <div><div class="fi-title">Express Delivery</div><div class="fi-desc">Same-day dispatch in select cities. Track your order in real time.</div></div>
+        </div>
+        <div class="feature-item">
+          <div class="fi-icon">↩️</div>
+          <div><div class="fi-title">Easy Returns</div><div class="fi-desc">30-day hassle-free returns. No questions, no drama.</div></div>
+        </div>
+        <div class="feature-item">
+          <div class="fi-icon">✅</div>
+          <div><div class="fi-title">Authenticity Verified</div><div class="fi-desc">Every product is quality-checked before it ships to you.</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="features-visual reveal">
+      <div class="fv-card">
+        <div class="fv-icon">🌍</div>
+        <div class="fv-title">Worldwide Shipping</div>
+        <div class="fv-sub">Delivered to 80+ countries with full tracking</div>
+      </div>
+      <div class="fv-card">
+        <div class="fv-icon">💳</div>
+        <div class="fv-title">Flexible Payment</div>
+        <div class="fv-sub">Cards, Apple Pay, crypto & more</div>
+      </div>
+      <div class="fv-card">
+        <div class="fv-icon">🎁</div>
+        <div class="fv-title">Gift Wrapping</div>
+        <div class="fv-sub">Luxury packaging on every order</div>
+      </div>
+      <div class="fv-card">
+        <div class="fv-icon">💬</div>
+        <div class="fv-title">24/7 Support</div>
+        <div class="fv-sub">Chat, email, phone — always here</div>
+      </div>
+      <div class="fv-card">
+        <div class="fv-icon">🏷️</div>
+        <div class="fv-title">Members Rewards</div>
+        <div class="fv-sub">Earn points on every purchase</div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <div class="blob b1"></div>
+  <div class="testi-inner">
+    <div class="testi-header reveal">
+      <div class="section-label">Testimonials</div>
+      <h2 class="section-title">What Our <em>Clients</em> Say</h2>
+      <p class="section-sub">Real reviews from people who've made Elvique their go-to for luxury fashion.</p>
+    </div>
+    <div class="testi-grid">
+      <div class="testi-card reveal">
+        <div class="stars">★★★★★</div>
+        <div class="testi-text">"Elvique completely changed how I shop online. The quality is unmatched and delivery was faster than I expected. 100% worth it."</div>
+        <div class="testi-author"><div class="testi-avatar">S</div><div><div class="testi-name">Sophia M.</div><div class="testi-role">Fashion Blogger, NYC</div></div></div>
+      </div>
+      <div class="testi-card reveal">
+        <div class="stars">★★★★★</div>
+        <div class="testi-text">"I've ordered three times and each time the packaging and the product exceeded my expectations. Elvique is now my favourite store."</div>
+        <div class="testi-author"><div class="testi-avatar">J</div><div><div class="testi-name">James K.</div><div class="testi-role">Entrepreneur, London</div></div></div>
+      </div>
+      <div class="testi-card reveal">
+        <div class="stars">★★★★★</div>
+        <div class="testi-text">"The authentication guarantee gives me total peace of mind. I finally feel confident buying designer items online. Absolutely love this brand."</div>
+        <div class="testi-author"><div class="testi-avatar">A</div><div><div class="testi-name">Aisha R.</div><div class="testi-role">Stylist, Dubai</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="logo footer-brand">
+        <span class="logo-icon"><span></span><span></span><span></span><span></span></span>
+        Elvi<span>que</span>
+      </div>
+      <p class="footer-desc">Curating luxury fashion for the bold, the refined, and the unapologetically stylish.</p>
+      <div class="footer-social">
+        <a class="social-btn" href="#">𝕏</a>
+        <a class="social-btn" href="#">in</a>
+        <a class="social-btn" href="#">📸</a>
+        <a class="social-btn" href="#">▶</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Shop</h4>
+      <ul>
+        <li><a href="#">New Arrivals</a></li>
+        <li><a href="#">Bags & Totes</a></li>
+        <li><a href="#">Footwear</a></li>
+        <li><a href="#">Jewelry</a></li>
+        <li><a href="#">Sale</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="#">Careers</a></li>
+        <li><a href="#">Press</a></li>
+        <li><a href="#">Sustainability</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Help</h4>
+      <ul>
+        <li><a href="#">FAQ</a></li>
+        <li><a href="#">Shipping Info</a></li>
+        <li><a href="#">Returns</a></li>
+        <li><a href="#">Size Guide</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Elvique. All rights reserved.</span>
+    <span>Privacy Policy · Terms of Service · Cookie Settings</span>
+  </div>
+</footer>
+
+<!-- CART TOAST -->
+<div class="cart-toast" id="cartToast">
+  <div class="toast-icon">🛍️</div>
+  <div class="toast-text">Added <strong id="toastName"></strong> to your cart!</div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

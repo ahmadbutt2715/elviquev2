@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About — Elvique</title>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="stylesheet.css" />
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <div class="logo">
+    <span class="logo-icon">
+      <span></span><span></span><span></span><span></span>
+    </span>
+    Elvi<span>que</span>
+  </div>
+  <ul class="nav-links">
+    <li><a href="index.html#home">Home</a></li>
+    <li><a href="about.html" class="active">Our Story</a></li>
+    <li><a href="index.html#products">Shop</a></li>
+    <li><a href="index.html#features">Features</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <button class="nav-cta" onclick="window.location.href='index.html#products'">Shop Now</button>
+  <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+</nav>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="blob b1"></div>
+  <div class="about-inner">
+    <div class="reveal">
+      <div class="section-label">Our Story</div>
+      <h2 class="section-title"><em>About</em> Elvique</h2>
+      <p class="section-sub">Born from a passion for quality and style, Elvique curates luxury fashion pieces that are accessible to everyone. We believe elegance shouldn't be reserved for the few — it belongs to anyone with a sense of taste.</p>
+      <div class="about-tags">
+        <span class="tag">Est. 2021</span>
+        <span class="tag">Luxury Fashion</span>
+        <span class="tag">Sustainable</span>
+        <span class="tag">Globally Shipped</span>
+        <span class="tag">Authenticity Guaranteed</span>
+      </div>
+    </div>
+    <div class="about-box reveal">
+      <div class="section-label" style="margin-bottom:1.2rem;">What Drives Us</div>
+      <p style="color:var(--muted);line-height:1.75;font-size:.95rem;">Our mobile-first store is built to seek, forge, and grow your personal style. With multiple fashion partnerships under our belt, the team behind Elvique is working hard to bring you the only luxury shopping experience you will ever need.</p>
+      <p style="color:var(--muted);line-height:1.75;font-size:.95rem;margin-top:1rem;">From verified designer accessories to hand-picked seasonal essentials — every item is selected with intention. Shop smart, dress sharp.</p>
+    </div>
+  </div>
+</section>
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="logo footer-brand">
+        <span class="logo-icon"><span></span><span></span><span></span><span></span></span>
+        Elvi<span>que</span>
+      </div>
+      <p class="footer-desc">Curating luxury fashion for the bold, the refined, and the unapologetically stylish.</p>
+      <div class="footer-social">
+        <a class="social-btn" href="#">𝕏</a>
+        <a class="social-btn" href="#">in</a>
+        <a class="social-btn" href="#">📸</a>
+        <a class="social-btn" href="#">▶</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Shop</h4>
+      <ul>
+        <li><a href="#">New Arrivals</a></li>
+        <li><a href="#">Bags & Totes</a></li>
+        <li><a href="#">Footwear</a></li>
+        <li><a href="#">Jewelry</a></li>
+        <li><a href="#">Sale</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="#">Careers</a></li>
+        <li><a href="#">Press</a></li>
+        <li><a href="#">Sustainability</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Help</h4>
+      <ul>
+        <li><a href="#">FAQ</a></li>
+        <li><a href="#">Shipping Info</a></li>
+        <li><a href="#">Returns</a></li>
+        <li><a href="#">Size Guide</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Elvique. All rights reserved.</span>
+    <span>Privacy Policy · Terms of Service · Cookie Settings</span>
+  </div>
+</footer>
+
+<!-- CART TOAST -->
+<div class="cart-toast" id="cartToast">
+  <div class="toast-icon">🛍️</div>
+  <div class="toast-text">Added <strong id="toastName"></strong> to your cart!</div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

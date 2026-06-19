@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact — Elvique</title>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="stylesheet.css" />
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <div class="logo">
+    <span class="logo-icon">
+      <span></span><span></span><span></span><span></span>
+    </span>
+    Elvi<span>que</span>
+  </div>
+  <ul class="nav-links">
+    <li><a href="index.html#home">Home</a></li>
+    <li><a href="about.html">Our Story</a></li>
+    <li><a href="index.html#products">Shop</a></li>
+    <li><a href="index.html#features">Features</a></li>
+    <li><a href="contact.html" class="active">Contact</a></li>
+  </ul>
+  <button class="nav-cta" onclick="window.location.href='index.html#products'">Shop Now</button>
+  <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+</nav>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="blob b1"></div>
+  <div class="blob b2"></div>
+  <div class="contact-inner">
+    <div class="reveal">
+      <div class="section-label">Contact Us</div>
+      <h2 class="section-title">Get In <em>Touch</em></h2>
+      <p class="section-sub">Have a question, a custom order request, or just want to say hello? We'd love to hear from you.</p>
+      <div class="contact-info">
+        <div class="ci-item"><div class="ci-icon">📍</div><div><div class="ci-label">Address</div><div class="ci-val">5400 W Parmer LN APT 427<br>Austin, Texas 78727</div></div></div>
+        <div class="ci-item"><div class="ci-icon">✉️</div><div><div class="ci-label">Email</div><div class="ci-val">hello@elvique.com</div></div></div>
+        <div class="ci-item"><div class="ci-icon">📞</div><div><div class="ci-label">Phone</div><div class="ci-val">+1 (737) 710-1739</div></div></div>
+      </div>
+    </div>
+    <div class="reveal">
+      <div class="contact-form">
+        <div class="form-row">
+          <div class="form-group"><label>First Name</label><input type="text" placeholder="Jane" /></div>
+          <div class="form-group"><label>Last Name</label><input type="text" placeholder="Doe" /></div>
+        </div>
+        <div class="form-group"><label>Email Address</label><input type="email" placeholder="jane@example.com" /></div>
+        <div class="form-group">
+          <label>Topic</label>
+          <select>
+            <option>General Inquiry</option>
+            <option>Order Support</option>
+            <option>Returns & Exchanges</option>
+            <option>Wholesale / Collab</option>
+          </select>
+        </div>
+        <div class="form-group"><label>Message</label><textarea placeholder="Tell us how we can help..."></textarea></div>
+        <button class="form-submit" onclick="handleSubmit(event)">Send Message →</button>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="logo footer-brand">
+        <span class="logo-icon"><span></span><span></span><span></span><span></span></span>
+        Elvi<span>que</span>
+      </div>
+      <p class="footer-desc">Curating luxury fashion for the bold, the refined, and the unapologetically stylish.</p>
+      <div class="footer-social">
+        <a class="social-btn" href="#">𝕏</a>
+        <a class="social-btn" href="#">in</a>
+        <a class="social-btn" href="#">📸</a>
+        <a class="social-btn" href="#">▶</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Shop</h4>
+      <ul>
+        <li><a href="#">New Arrivals</a></li>
+        <li><a href="#">Bags & Totes</a></li>
+        <li><a href="#">Footwear</a></li>
+        <li><a href="#">Jewelry</a></li>
+        <li><a href="#">Sale</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="#">Careers</a></li>
+        <li><a href="#">Press</a></li>
+        <li><a href="#">Sustainability</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Help</h4>
+      <ul>
+        <li><a href="#">FAQ</a></li>
+        <li><a href="#">Shipping Info</a></li>
+        <li><a href="#">Returns</a></li>
+        <li><a href="#">Size Guide</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Elvique. All rights reserved.</span>
+    <span>Privacy Policy · Terms of Service · Cookie Settings</span>
+  </div>
+</footer>
+
+<!-- CART TOAST -->
+<div class="cart-toast" id="cartToast">
+  <div class="toast-icon">🛍️</div>
+  <div class="toast-text">Added <strong id="toastName"></strong> to your cart!</div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
