@@ -5,8 +5,17 @@
 
 /* ── THEME TOGGLE ── */
 (function() {
+  // Default to light mode for new visitors (no saved preference).
+  // Explicitly set OR remove the class so hardcoded HTML attributes
+  // never override the user's saved choice across page navigations.
   const saved = localStorage.getItem('elvique_theme');
-  if (saved !== 'dark') document.body.classList.add('light-mode');
+  if (saved === 'dark') {
+    document.body.classList.remove('light-mode');
+  } else {
+    // 'light', or null (first-time visitor) → light mode
+    document.body.classList.add('light-mode');
+    if (!saved) localStorage.setItem('elvique_theme', 'light');
+  }
 })();
 
 function toggleTheme() {

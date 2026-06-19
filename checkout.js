@@ -14,11 +14,15 @@ function generateOrderId() {
 
 /* ── WEBHOOK URL LOADER ──
    Priority order:
-   1. window._elvique_config.webhookUrl  (set by config.js — local dev, git-ignored)
-   2. window.__ENV__.WEBHOOK_URL         (injected by hosting platform at build/runtime)
-   3. null → webhook silently skipped, order still completes
+   1. window._elvique_checkout_config.webhookUrl  (set by config.js — local dev, git-ignored)
+   2. window._elvique_config.webhookUrl           (fallback if needed)
+   3. window.__ENV__.WEBHOOK_URL                 (injected by hosting platform at build/runtime)
+   4. null → webhook silently skipped, order still completes
 */
 function getWebhookUrl() {
+  if (window._elvique_checkout_config && window._elvique_checkout_config.webhookUrl) {
+    return window._elvique_checkout_config.webhookUrl;
+  }
   if (window._elvique_config && window._elvique_config.webhookUrl) {
     return window._elvique_config.webhookUrl;
   }
@@ -30,9 +34,10 @@ function getWebhookUrl() {
 
 /* ── WEBHOOK BASIC AUTH CREDENTIALS ──
    Priority order (same pattern as getWebhookUrl):
-   1. window._elvique_config.webhookUser / webhookPass  (local dev, git-ignored)
-   2. window.__ENV__.WEBHOOK_USER / WEBHOOK_PASS         (injected by hosting platform)
-   3. Fallback defaults below.
+   1. window._elvique_checkout_config.webhookUser / webhookPass  (local dev, git-ignored)
+   2. window._elvique_config.webhookUser / webhookPass           (fallback if needed)
+   3. window.__ENV__.WEBHOOK_USER / WEBHOOK_PASS                 (injected by hosting platform)
+   4. Fallback defaults below.
 
    NOTE: This is client-side JS — anyone can view-source and read these values.
    Basic Auth here only stops casual/automated hits on the webhook URL; it is
@@ -40,13 +45,19 @@ function getWebhookUrl() {
    and treat the webhook endpoint as effectively public.
 */
 function getWebhookAuth() {
+  if (window._elvique_checkout_config && window._elvique_checkout_config.webhookUser) {
+    return {
+      user: window._elvique_checkout_config.webhookUser,
+      pass: window._elvique_checkout_config.webhookPass || '',
+    };
+  }
   if (window._elvique_config && window._elvique_config.webhookUser) {
     return { user: window._elvique_config.webhookUser, pass: window._elvique_config.webhookPass || '' };
   }
   if (window.__ENV__ && window.__ENV__.WEBHOOK_USER) {
     return { user: window.__ENV__.WEBHOOK_USER, pass: window.__ENV__.WEBHOOK_PASS || '' };
   }
-  return { user: 'elviqueOnlineGitHub1', pass: 'Elv1que#Wh2026!Secure' };
+  return { user: '', pass: '' };
 }
 
 /* ── SEND TO N8N WEBHOOK ──
@@ -64,14 +75,15 @@ async function sendToWebhook(orderPayload) {
 
   const { user, pass } = getWebhookAuth();
   const authHeader = 'Basic ' + btoa(`${user}:${pass}`);
+  const headers = { 'Content-Type': 'application/json' };
+  if (user || pass) {
+    headers.Authorization = authHeader;
+  }
 
   try {
     const response = await fetch(url, {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': authHeader,
-      },
+      headers,
       body: JSON.stringify(orderPayload),
     });
 
@@ -195,10 +207,9 @@ async function handleCheckoutSubmit(e) {
   // Fire webhook and check whether it actually succeeded
   const webhookResult = await sendToWebhook(orderPayload);
 
-  // "no-url" means webhook isn't configured (local dev) — treat as a silent
-  // skip, not a failure, so dev environments without config.js still work.
-  // Any other failure (network error / bad response) is a real failure.
-  const orderSucceeded = webhookResult.success || webhookResult.reason === 'no-url';
+  // Only succeed when the webhook call actually succeeds.
+  // If the webhook URL is missing or any network/error occurs, the order should not complete.
+  const orderSucceeded = webhookResult.success;
 
   setTimeout(() => {
     btn.innerHTML = originalHTML;
