@@ -46,15 +46,156 @@ function filterProducts(cat, btn) {
 
 function toggleWish(el) { el.textContent = el.textContent === '🤍' ? '❤️' : '🤍'; }
 
+/* ── CART STATE & LOGIC ── */
+let cart = JSON.parse(localStorage.getItem('elvique_cart')) || [];
+
+function saveCart() {
+  localStorage.setItem('elvique_cart', JSON.stringify(cart));
+}
+
 let toastTimer;
 function addToCart(name) {
+  // Find product by name
+  let product = products.find(p => p.name === name);
+  // Support clicking mock product in the phone visual
+  if (!product && name === 'Designer Tote Bag') {
+    product = products.find(p => p.id === 1); // Signature Tote Bag
+  }
+  
+  if (product) {
+    const cartItem = cart.find(item => item.id === product.id);
+    if (cartItem) {
+      cartItem.quantity++;
+    } else {
+      cart.push({ ...product, quantity: 1 });
+    }
+    saveCart();
+    renderCart();
+  }
+
+  // Display toast
   const toast = document.getElementById('cartToast');
-  if (!toast) return;
-  document.getElementById('toastName').textContent = name;
-  toast.classList.add('show');
-  clearTimeout(toastTimer);
-  toastTimer = setTimeout(() => toast.classList.remove('show'), 3000);
+  if (toast) {
+    document.getElementById('toastName').textContent = product ? product.name : name;
+    toast.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => toast.classList.remove('show'), 3000);
+  }
 }
+
+function toggleCartDrawer(isOpen) {
+  const drawer = document.getElementById('cartDrawer');
+  const overlay = document.getElementById('cartOverlay');
+  if (drawer && overlay) {
+    if (isOpen) {
+      drawer.classList.add('open');
+      overlay.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    } else {
+      drawer.classList.remove('open');
+      overlay.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+  }
+}
+
+function updateQuantity(productId, amount) {
+  const itemIndex = cart.findIndex(item => item.id === productId);
+  if (itemIndex > -1) {
+    cart[itemIndex].quantity += amount;
+    if (cart[itemIndex].quantity <= 0) {
+      cart.splice(itemIndex, 1);
+    }
+    saveCart();
+    renderCart();
+  }
+}
+
+function removeFromCart(productId) {
+  cart = cart.filter(item => item.id !== productId);
+  saveCart();
+  renderCart();
+}
+
+function clearCart() {
+  cart = [];
+  saveCart();
+  renderCart();
+}
+
+function renderCart() {
+  const totalCount = cart.reduce((sum, item) => sum + item.quantity, 0);
+  const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+
+  // Update nav badges
+  const badge = document.getElementById('cartBadge');
+  if (badge) {
+    badge.textContent = totalCount;
+    badge.style.display = totalCount > 0 ? 'flex' : 'none';
+  }
+
+  // Update drawer header count
+  const headerCount = document.getElementById('cartCountHeader');
+  if (headerCount) {
+    headerCount.textContent = totalCount;
+  }
+
+  // Update subtotal
+  const subtotalEl = document.getElementById('cartSubtotal');
+  if (subtotalEl) {
+    subtotalEl.textContent = 'Rs. ' + subtotal.toLocaleString();
+  }
+
+  // Render items list
+  const container = document.getElementById('cartDrawerItems');
+  if (!container) return;
+
+  if (cart.length === 0) {
+    container.innerHTML = `
+      <div class="cart-empty-message">
+        <span class="cart-empty-icon">🛍️</span>
+        <p>Your cart is empty.</p>
+        <p style="margin-top: .4rem; font-size: .85rem; color: var(--muted);">Explore our premium collections!</p>
+        <button class="cart-empty-shop-btn" onclick="toggleCartDrawer(false); window.location.href='index.html#products';">Shop Now</button>
+      </div>
+    `;
+  } else {
+    container.innerHTML = cart.map(item => `
+      <div class="cart-item">
+        <div class="cart-item-emoji">${item.emoji}</div>
+        <div class="cart-item-details">
+          <div class="cart-item-name">${item.name}</div>
+          <div class="cart-item-price">Rs. ${item.price.toLocaleString()}</div>
+          <div class="cart-item-actions">
+            <div class="cart-qty-selector">
+              <button class="cart-qty-btn" onclick="updateQuantity(${item.id}, -1)">−</button>
+              <span class="cart-qty-val">${item.quantity}</span>
+              <button class="cart-qty-btn" onclick="updateQuantity(${item.id}, 1)">+</button>
+            </div>
+            <button class="cart-item-remove" onclick="removeFromCart(${item.id})" aria-label="Remove item">🗑️</button>
+          </div>
+        </div>
+      </div>
+    `).join('');
+  }
+  
+  // If on checkout page, render checkout summary as well
+  if (typeof renderCheckoutSummary === 'function') {
+    renderCheckoutSummary();
+  }
+}
+
+function checkoutCart() {
+  if (cart.length === 0) {
+    alert("Your cart is empty! Add some items before checking out.");
+    return;
+  }
+  window.location.href = 'checkout.html';
+}
+
+/* ── CHECKOUT PAGE ACTIONS & RENDERING ── */
+
+
 
 function handleSubmit(e) {
   e.preventDefault();
@@ -93,10 +234,26 @@ const sections = document.querySelectorAll('section[id], div[id]');
 const navLinks = document.querySelectorAll('.nav-links a');
 
 if (sections.length && navLinks.length) {
+  // Find only the section IDs that actually exist as anchor links in the navbar
+  const activeSectionIds = Array.from(navLinks)
+    .map(a => {
+      const href = a.getAttribute('href') || '';
+      const hashIndex = href.indexOf('#');
+      return hashIndex !== -1 ? href.substring(hashIndex + 1) : null;
+    })
+    .filter(id => id !== null);
+
   window.addEventListener('scroll', () => {
     let cur = '';
-    sections.forEach(s => { if (window.scrollY >= s.offsetTop - 80) cur = s.id; });
+    // Only track sections that have matching navbar anchor links
+    sections.forEach(s => {
+      if (activeSectionIds.includes(s.id) && window.scrollY >= s.offsetTop - 80) {
+        cur = s.id;
+      }
+    });
+    
     if (!cur) return;
+    
     navLinks.forEach(a => {
       const href = a.getAttribute('href') || '';
       if (href.includes('#')) {
@@ -114,3 +271,4 @@ document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
 /* ── INIT ── */
 renderProducts('all');
+renderCart();

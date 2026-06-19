@@ -19,13 +19,17 @@
   </div>
   <ul class="nav-links">
     <li><a href="index.html#home">Home</a></li>
-    <li><a href="about.html" class="active">Our Story</a></li>
-    <li><a href="index.html#products">Shop</a></li>
-    <li><a href="index.html#features">Features</a></li>
+    <li><a href="about.html" class="active">About</a></li>
     <li><a href="contact.html">Contact</a></li>
   </ul>
-  <button class="nav-cta" onclick="window.location.href='index.html#products'">Shop Now</button>
-  <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+  <div class="nav-right-group">
+    <button class="nav-cart-btn" onclick="toggleCartDrawer(true)" aria-label="Open Cart">
+      <span class="nav-cart-icon">🛍️</span>
+      <span class="nav-cart-badge" id="cartBadge">0</span>
+    </button>
+    <button class="nav-cta" onclick="window.location.href='index.html#products'">Shop Now</button>
+    <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+  </div>
 </nav>
 
 <!-- ABOUT -->
@@ -107,6 +111,26 @@
 <div class="cart-toast" id="cartToast">
   <div class="toast-icon">🛍️</div>
   <div class="toast-text">Added <strong id="toastName"></strong> to your cart!</div>
+</div>
+
+<!-- CART OVERLAY & DRAWER -->
+<div class="cart-overlay" id="cartOverlay" onclick="toggleCartDrawer(false)"></div>
+<div class="cart-drawer" id="cartDrawer">
+  <div class="cart-drawer-header">
+    <h3>Your Cart (<span id="cartCountHeader">0</span>)</h3>
+    <button class="cart-drawer-close" onclick="toggleCartDrawer(false)" aria-label="Close Cart">✕</button>
+  </div>
+  <div class="cart-drawer-items" id="cartDrawerItems">
+    <!-- Dynamic cart items -->
+  </div>
+  <div class="cart-drawer-footer">
+    <div class="cart-total-row">
+      <span>Subtotal</span>
+      <span id="cartSubtotal">Rs. 0</span>
+    </div>
+    <button class="checkout-btn" onclick="checkoutCart()">Proceed to Checkout</button>
+    <button class="clear-cart-btn" onclick="clearCart()">Clear Cart</button>
+  </div>
 </div>
 
 <script src="script.js"></script>

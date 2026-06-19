@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Checkout — Elvique</title>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="stylesheet.css" />
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <div class="logo" onclick="window.location.href='index.html'" style="cursor: pointer;">
+    <span class="logo-icon">
+      <span></span><span></span><span></span><span></span>
+    </span>
+    Elvi<span>que</span>
+  </div>
+  <ul class="nav-links">
+    <li><a href="index.html#home">Home</a></li>
+    <li><a href="about.html">Our Story</a></li>
+    <li><a href="index.html#products">Shop</a></li>
+    <li><a href="index.html#features">Features</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <div class="nav-right-group">
+    <button class="nav-cart-btn" onclick="toggleCartDrawer(true)" aria-label="Open Cart">
+      <span class="nav-cart-icon">🛍️</span>
+      <span class="nav-cart-badge" id="cartBadge">0</span>
+    </button>
+    <button class="nav-cta" onclick="window.location.href='index.html#products'">Shop Now</button>
+    <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+  </div>
+</nav>
+
+<!-- CHECKOUT SECTION -->
+<section id="checkout">
+  <div class="blob b1" style="top: -10%; left: -10%; width: 400px; height: 400px;"></div>
+  <div class="blob b2" style="bottom: 5%; right: -5%; width: 350px; height: 350px;"></div>
+  
+  <div class="checkout-grid">
+    <!-- Left Column: Billing Details -->
+    <div class="checkout-card">
+      <h3>Billing & Shipping Details</h3>
+      <form class="checkout-form" id="checkoutForm" onsubmit="handleCheckoutSubmit(event)">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="firstName">First Name</label>
+            <input type="text" id="firstName" class="checkout-input" placeholder="Jane" required />
+          </div>
+          <div class="form-group">
+            <label for="lastName">Last Name</label>
+            <input type="text" id="lastName" class="checkout-input" placeholder="Doe" required />
+          </div>
+        </div>
+        
+        <div class="form-row">
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" class="checkout-input" placeholder="jane@example.com" required />
+          </div>
+          <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" class="checkout-input" placeholder="+1 (737) 710-1739" required />
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label for="address">Shipping Address</label>
+          <input type="text" id="address" class="checkout-input" placeholder="5400 W Parmer LN APT 427" required />
+        </div>
+        
+        <div class="form-row">
+          <div class="form-group">
+            <label for="city">City</label>
+            <input type="text" id="city" class="checkout-input" placeholder="Austin" required />
+          </div>
+          <div class="form-group">
+            <label for="zipCode">ZIP / Postal Code</label>
+            <input type="text" id="zipCode" class="checkout-input" placeholder="78727" required />
+          </div>
+        </div>
+        
+        <h3 style="margin-top: 2rem;">Payment Method</h3>
+        <div class="payment-selector" style="grid-template-columns: 1fr;">
+          <div class="payment-option active" style="cursor: default; pointer-events: none; border-color: var(--purple); background: rgba(123, 53, 232, 0.05); max-width: 300px;">
+            <span class="payment-option-icon">💵</span>
+            <span class="payment-option-label" style="font-size: .85rem;">Cash on Delivery (COD)</span>
+          </div>
+        </div>
+        <p style="font-size: .85rem; color: var(--muted); line-height: 1.5; margin-top: -.5rem;">Pay with cash upon delivery of your items. No advance payment required.</p>
+      </form>
+    </div>
+    
+    <!-- Right Column: Order Summary -->
+    <div class="checkout-card" style="position: sticky; top: 100px;">
+      <h3>Order Summary</h3>
+      <div class="summary-items-list" id="checkoutSummaryItems">
+        <!-- Dynamic items list -->
+      </div>
+      
+      <div class="summary-calc-row">
+        <span>Subtotal</span>
+        <span id="checkoutSubtotal">Rs. 0</span>
+      </div>
+      <div class="summary-calc-row">
+        <span>Shipping Fee</span>
+        <span id="checkoutShipping">Rs. 0</span>
+      </div>
+      <div class="summary-total-row">
+        <span>Total</span>
+        <span id="checkoutGrandTotal">Rs. 0</span>
+      </div>
+      
+      <button type="submit" form="checkoutForm" class="place-order-btn" id="placeOrderBtn">
+        Place Order
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="logo footer-brand">
+        <span class="logo-icon"><span></span><span></span><span></span><span></span></span>
+        Elvi<span>que</span>
+      </div>
+      <p class="footer-desc">Curating luxury fashion for the bold, the refined, and the unapologetically stylish.</p>
+      <div class="footer-social">
+        <a class="social-btn" href="#">𝕏</a>
+        <a class="social-btn" href="#">in</a>
+        <a class="social-btn" href="#">📸</a>
+        <a class="social-btn" href="#">▶</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Shop</h4>
+      <ul>
+        <li><a href="index.html#products">New Arrivals</a></li>
+        <li><a href="index.html#products">Bags & Totes</a></li>
+        <li><a href="index.html#products">Footwear</a></li>
+        <li><a href="index.html#products">Jewelry</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="#">Careers</a></li>
+        <li><a href="#">Sustainability</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Help</h4>
+      <ul>
+        <li><a href="#">FAQ</a></li>
+        <li><a href="#">Shipping Info</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Elvique. All rights reserved.</span>
+    <span>Privacy Policy · Terms of Service</span>
+  </div>
+</footer>
+
+<!-- SUCCESS MODAL -->
+<div class="success-modal-overlay" id="successModalOverlay">
+  <div class="success-modal">
+    <div class="success-check">✓</div>
+    <h2>Order Placed!</h2>
+    <p>Thank you for choosing Elvique. Your purchase was successful and your order is being prepared.<br><br>We've sent a confirmation email to <strong id="successEmail"></strong>.</p>
+    <a href="index.html" class="success-cta" onclick="clearCartAndCloseModal(event)">Back to Shopping</a>
+  </div>
+</div>
+
+<!-- CART TOAST -->
+<div class="cart-toast" id="cartToast">
+  <div class="toast-icon">🛍️</div>
+  <div class="toast-text">Added <strong id="toastName"></strong> to your cart!</div>
+</div>
+
+<!-- CART OVERLAY & DRAWER -->
+<div class="cart-overlay" id="cartOverlay" onclick="toggleCartDrawer(false)"></div>
+<div class="cart-drawer" id="cartDrawer">
+  <div class="cart-drawer-header">
+    <h3>Your Cart (<span id="cartCountHeader">0</span>)</h3>
+    <button class="cart-drawer-close" onclick="toggleCartDrawer(false)" aria-label="Close Cart">✕</button>
+  </div>
+  <div class="cart-drawer-items" id="cartDrawerItems">
+    <!-- Dynamic cart items -->
+  </div>
+  <div class="cart-drawer-footer">
+    <div class="cart-total-row">
+      <span>Subtotal</span>
+      <span id="cartSubtotal">Rs. 0</span>
+    </div>
+    <button class="checkout-btn" onclick="checkoutCart()">Proceed to Checkout</button>
+    <button class="clear-cart-btn" onclick="clearCart()">Clear Cart</button>
+  </div>
+</div>
+
+<script src="script.js"></script>
+<script src="checkout.js"></script>
+</body>
+</html>

@@ -20,12 +20,16 @@
   <ul class="nav-links">
     <li><a href="index.html#home" class="active">Home</a></li>
     <li><a href="about.html">About</a></li>
-    <li><a href="index.html#products">Shop</a></li>
-    <li><a href="index.html#features">Features</a></li>
     <li><a href="contact.html">Contact</a></li>
   </ul>
-  <button class="nav-cta" onclick="window.location.href='index.html#products'">Shop Now</button>
-  <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+  <div class="nav-right-group">
+    <button class="nav-cart-btn" onclick="toggleCartDrawer(true)" aria-label="Open Cart">
+      <span class="nav-cart-icon">🛍️</span>
+      <span class="nav-cart-badge" id="cartBadge">0</span>
+    </button>
+    <button class="nav-cta" onclick="window.location.href='index.html#products'">Shop Now</button>
+    <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+  </div>
 </nav>
 
 <!-- HERO -->
@@ -55,7 +59,7 @@
               <div class="ph-badge">New Arrival</div>
               <div class="ph-name">Designer Tote Bag</div>
               <div class="ph-price">Rs. 8,500</div>
-              <div class="ph-btn">Add to Cart</div>
+              <div class="ph-btn" onclick="addToCart('Designer Tote Bag')" style="cursor: pointer;">Add to Cart</div>
             </div>
           </div>
         </div>
@@ -93,15 +97,6 @@
   </div>
 </section>
 
-<!-- STATS -->
-<div class="stats-bar">
-  <div class="stats-inner">
-    <div class="reveal"><div class="stat-num">12K+</div><div class="stat-label">Happy Customers</div></div>
-    <div class="reveal"><div class="stat-num">500+</div><div class="stat-label">Products</div></div>
-    <div class="reveal"><div class="stat-num">98%</div><div class="stat-label">Satisfaction Rate</div></div>
-    <div class="reveal"><div class="stat-num">4.9★</div><div class="stat-label">Average Rating</div></div>
-  </div>
-</div>
 <!-- PRODUCTS -->
 <section id="products">
   <div class="blob b1"></div>
@@ -120,90 +115,7 @@
   </div>
   <div class="products-grid" id="productsGrid"></div>
 </section>
-<!-- FEATURES -->
-<section id="features">
-  <div class="blob b1"></div>
-  <div class="features-inner">
-    <div class="reveal">
-      <div class="section-label">Why Elvique</div>
-      <h2 class="section-title">Shopping<br><em>Reimagined</em></h2>
-      <p class="section-sub">We've built an experience around you — seamless, secure, and styled to perfection.</p>
-      <div class="features-list">
-        <div class="feature-item">
-          <div class="fi-icon">🔒</div>
-          <div><div class="fi-title">Secure Checkout</div><div class="fi-desc">256-bit SSL encryption on every transaction. Your data stays yours.</div></div>
-        </div>
-        <div class="feature-item">
-          <div class="fi-icon">🚀</div>
-          <div><div class="fi-title">Express Delivery</div><div class="fi-desc">Same-day dispatch in select cities. Track your order in real time.</div></div>
-        </div>
-        <div class="feature-item">
-          <div class="fi-icon">↩️</div>
-          <div><div class="fi-title">Easy Returns</div><div class="fi-desc">30-day hassle-free returns. No questions, no drama.</div></div>
-        </div>
-        <div class="feature-item">
-          <div class="fi-icon">✅</div>
-          <div><div class="fi-title">Authenticity Verified</div><div class="fi-desc">Every product is quality-checked before it ships to you.</div></div>
-        </div>
-      </div>
-    </div>
-    <div class="features-visual reveal">
-      <div class="fv-card">
-        <div class="fv-icon">🌍</div>
-        <div class="fv-title">Worldwide Shipping</div>
-        <div class="fv-sub">Delivered to 80+ countries with full tracking</div>
-      </div>
-      <div class="fv-card">
-        <div class="fv-icon">💳</div>
-        <div class="fv-title">Flexible Payment</div>
-        <div class="fv-sub">Cards, Apple Pay, crypto & more</div>
-      </div>
-      <div class="fv-card">
-        <div class="fv-icon">🎁</div>
-        <div class="fv-title">Gift Wrapping</div>
-        <div class="fv-sub">Luxury packaging on every order</div>
-      </div>
-      <div class="fv-card">
-        <div class="fv-icon">💬</div>
-        <div class="fv-title">24/7 Support</div>
-        <div class="fv-sub">Chat, email, phone — always here</div>
-      </div>
-      <div class="fv-card">
-        <div class="fv-icon">🏷️</div>
-        <div class="fv-title">Members Rewards</div>
-        <div class="fv-sub">Earn points on every purchase</div>
-      </div>
-    </div>
-  </div>
-</section>
-<!-- TESTIMONIALS -->
-<section id="testimonials">
-  <div class="blob b1"></div>
-  <div class="testi-inner">
-    <div class="testi-header reveal">
-      <div class="section-label">Testimonials</div>
-      <h2 class="section-title">What Our <em>Clients</em> Say</h2>
-      <p class="section-sub">Real reviews from people who've made Elvique their go-to for luxury fashion.</p>
-    </div>
-    <div class="testi-grid">
-      <div class="testi-card reveal">
-        <div class="stars">★★★★★</div>
-        <div class="testi-text">"Elvique completely changed how I shop online. The quality is unmatched and delivery was faster than I expected. 100% worth it."</div>
-        <div class="testi-author"><div class="testi-avatar">S</div><div><div class="testi-name">Sophia M.</div><div class="testi-role">Fashion Blogger, NYC</div></div></div>
-      </div>
-      <div class="testi-card reveal">
-        <div class="stars">★★★★★</div>
-        <div class="testi-text">"I've ordered three times and each time the packaging and the product exceeded my expectations. Elvique is now my favourite store."</div>
-        <div class="testi-author"><div class="testi-avatar">J</div><div><div class="testi-name">James K.</div><div class="testi-role">Entrepreneur, London</div></div></div>
-      </div>
-      <div class="testi-card reveal">
-        <div class="stars">★★★★★</div>
-        <div class="testi-text">"The authentication guarantee gives me total peace of mind. I finally feel confident buying designer items online. Absolutely love this brand."</div>
-        <div class="testi-author"><div class="testi-avatar">A</div><div><div class="testi-name">Aisha R.</div><div class="testi-role">Stylist, Dubai</div></div></div>
-      </div>
-    </div>
-  </div>
-</section>
+
 <!-- FOOTER -->
 <footer>
   <div class="footer-inner">
@@ -260,6 +172,26 @@
 <div class="cart-toast" id="cartToast">
   <div class="toast-icon">🛍️</div>
   <div class="toast-text">Added <strong id="toastName"></strong> to your cart!</div>
+</div>
+
+<!-- CART OVERLAY & DRAWER -->
+<div class="cart-overlay" id="cartOverlay" onclick="toggleCartDrawer(false)"></div>
+<div class="cart-drawer" id="cartDrawer">
+  <div class="cart-drawer-header">
+    <h3>Your Cart (<span id="cartCountHeader">0</span>)</h3>
+    <button class="cart-drawer-close" onclick="toggleCartDrawer(false)" aria-label="Close Cart">✕</button>
+  </div>
+  <div class="cart-drawer-items" id="cartDrawerItems">
+    <!-- Dynamic cart items -->
+  </div>
+  <div class="cart-drawer-footer">
+    <div class="cart-total-row">
+      <span>Subtotal</span>
+      <span id="cartSubtotal">Rs. 0</span>
+    </div>
+    <button class="checkout-btn" onclick="checkoutCart()">Proceed to Checkout</button>
+    <button class="clear-cart-btn" onclick="clearCart()">Clear Cart</button>
+  </div>
 </div>
 
 <script src="script.js"></script>
