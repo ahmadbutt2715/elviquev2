@@ -23,6 +23,10 @@
     <li><a href="contact.html">Contact</a></li>
   </ul>
   <div class="nav-right-group">
+    <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" aria-label="Toggle theme">
+        <span class="icon-moon">🌙</span>
+        <span class="icon-sun">☀️</span>
+      </button>
     <button class="nav-cart-btn" onclick="toggleCartDrawer(true)" aria-label="Open Cart">
       <span class="nav-cart-icon">🛍️</span>
       <span class="nav-cart-badge" id="cartBadge">0</span>
@@ -114,6 +118,7 @@
       <button type="submit" form="checkoutForm" class="place-order-btn" id="placeOrderBtn">
         Place Order
       </button>
+      <p id="checkoutErrorMsg" style="display:none; color:#e53e3e; font-size:.85rem; margin-top:.75rem; text-align:center; line-height:1.4;"></p>
     </div>
   </div>
 </section>
@@ -171,7 +176,10 @@
   <div class="success-modal">
     <div class="success-check">✓</div>
     <h2>Order Placed!</h2>
-    <p>Thank you for choosing Elvique. Your purchase was successful and your order is being prepared.<br><br>We've sent a confirmation email to <strong id="successEmail"></strong>.</p>
+    <p>Thank you for choosing Elvique. Your purchase was successful and your order is being prepared.<br><br>
+    Order ID: <strong id="successOrderId"></strong><br>
+    Product: <strong id="successProductName"></strong> (Qty: <strong id="successProductQty"></strong>)<br><br>
+    We've sent a confirmation email to <strong id="successEmail"></strong>.</p>
     <a href="index.html" class="success-cta" onclick="clearCartAndCloseModal(event)">Back to Shopping</a>
   </div>
 </div>
@@ -203,6 +211,7 @@
 </div>
 
 <script src="script.js"></script>
+<script src="config.js"></script>
 <script src="checkout.js"></script>
 </body>
 </html>

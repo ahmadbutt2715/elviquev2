@@ -3,6 +3,17 @@
    Shared JavaScript for index.html, about.html, contact.html
    =========================================================== */
 
+/* ── THEME TOGGLE ── */
+(function() {
+  const saved = localStorage.getItem('elvique_theme');
+  if (saved === 'light') document.body.classList.add('light-mode');
+})();
+
+function toggleTheme() {
+  const isLight = document.body.classList.toggle('light-mode');
+  localStorage.setItem('elvique_theme', isLight ? 'light' : 'dark');
+}
+
 /* ── PRODUCTS DATA ── */
 const products = [
   { id:1, name:'Signature Tote Bag', cat:'bags', emoji:'👜', image:'images/signature_tote_bag.png', price:8500, oldPrice:11000, badge:'New', badgeClass:'new', description:'Premium handcrafted leather tote with gold-tone hardware. Spacious interior fits daily essentials with an interior zip pocket.', sizes:['One Size'], colors:['Black','Tan'] },

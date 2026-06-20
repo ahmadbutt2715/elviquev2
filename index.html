@@ -11,7 +11,7 @@
 
 <!-- NAV -->
 <nav id="navbar">
-  <div class="logo">
+  <div class="logo" onclick="window.location.href='index.html'" style="cursor: pointer;">
     <span class="logo-icon">
       <span></span><span></span><span></span><span></span>
     </span>
@@ -23,6 +23,10 @@
     <li><a href="contact.html">Contact</a></li>
   </ul>
   <div class="nav-right-group">
+    <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" aria-label="Toggle theme">
+        <span class="icon-moon">🌙</span>
+        <span class="icon-sun">☀️</span>
+      </button>
     <button class="nav-cart-btn" onclick="toggleCartDrawer(true)" aria-label="Open Cart">
       <span class="nav-cart-icon">🛍️</span>
       <span class="nav-cart-badge" id="cartBadge">0</span>

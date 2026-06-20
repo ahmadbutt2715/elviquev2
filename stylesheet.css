@@ -12,6 +12,151 @@
       --border: rgba(123,53,232,.18);
     }
 
+    /* ── LIGHT MODE THEME ── */
+    body.light-mode {
+      --navy:   #f4f2ff;
+      --dark:   #eae7fb;
+      --card:   #ffffff;
+      --purple: #6c22d6;
+      --violet: #8548d4;
+      --pink:   #c825e8;
+      --white:  #1a1230;
+      --muted:  #6b6880;
+      --border: rgba(108,34,214,.18);
+    }
+
+    /* Nav background in light mode */
+    body.light-mode nav#navbar {
+      background: rgba(244,242,255,.88);
+    }
+
+    /* Mobile nav open state in light mode */
+    body.light-mode .nav-links.mobile-open {
+      background: rgba(244,242,255,.98);
+    }
+
+    /* Product image placeholder in light mode */
+    body.light-mode .product-img {
+      background: linear-gradient(135deg, #e8deff, #d5c6f8);
+    }
+
+    /* Product detail image in light mode */
+    body.light-mode .product-detail-img {
+      background: linear-gradient(135deg, #e8deff, #d5c6f8);
+    }
+
+    /* About box in light mode */
+    body.light-mode .about-box {
+      background: rgba(108,34,214,.04);
+    }
+
+    /* Cart overlay in light mode */
+    body.light-mode .cart-overlay {
+      background: rgba(20,10,50,.45);
+    }
+
+    /* Cart drawer in light mode */
+    body.light-mode .cart-drawer {
+      background: rgba(255,255,255,.97);
+      box-shadow: -10px 0 40px rgba(108,34,214,.15);
+    }
+
+    /* Cart drawer footer in light mode */
+    body.light-mode .cart-drawer-footer {
+      background: rgba(234,231,251,.9);
+    }
+
+    /* Cart item emoji thumbnail in light mode */
+    body.light-mode .cart-item-emoji,
+    body.light-mode .summary-item-emoji {
+      background: var(--dark);
+    }
+
+    /* Cart qty selector in light mode */
+    body.light-mode .cart-qty-selector {
+      background: var(--dark);
+    }
+
+    /* Cart toast in light mode */
+    body.light-mode .cart-toast {
+      background: #ffffff;
+      box-shadow: 0 10px 40px rgba(108,34,214,.18);
+    }
+
+    /* Form inputs in light mode */
+    body.light-mode .form-group input,
+    body.light-mode .form-group textarea,
+    body.light-mode .form-group select,
+    body.light-mode .checkout-input {
+      background: #ffffff;
+      color: var(--white);
+    }
+
+    body.light-mode .checkout-input::placeholder {
+      color: rgba(107,104,128,.5);
+    }
+
+    /* Payment option in light mode */
+    body.light-mode .payment-option {
+      background: var(--dark);
+    }
+
+    /* Success modal in light mode */
+    body.light-mode .success-modal {
+      background: #ffffff;
+      box-shadow: 0 20px 50px rgba(0,0,0,.15);
+    }
+
+    body.light-mode .success-modal-overlay {
+      background: rgba(20,10,50,.6);
+    }
+
+    /* Hamburger spans in light mode */
+    body.light-mode .hamburger span {
+      background: var(--white);
+    }
+
+    /* Product wishlist button in light mode */
+    body.light-mode .product-wish {
+      background: rgba(255,255,255,.85);
+    }
+
+    /* Cart drawer close hover */
+    body.light-mode .cart-drawer-close:hover {
+      background: rgba(0,0,0,.06);
+    }
+
+    /* Blob opacity softened in light mode */
+    body.light-mode .blob {
+      opacity: .18;
+    }
+
+    /* ── THEME TOGGLE BUTTON ── */
+    .theme-toggle {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--white);
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 1.05rem;
+      transition: background .2s, border-color .2s, transform .2s;
+      flex-shrink: 0;
+    }
+    .theme-toggle:hover {
+      background: rgba(123,53,232,.12);
+      border-color: var(--purple);
+      transform: rotate(20deg) scale(1.08);
+    }
+    .theme-toggle .icon-moon { display: block; }
+    .theme-toggle .icon-sun  { display: none; }
+    body.light-mode .theme-toggle .icon-moon { display: none; }
+    body.light-mode .theme-toggle .icon-sun  { display: block; }
+
     html { scroll-behavior: smooth; }
 
     body {
