@@ -6,7 +6,7 @@
 /* ── THEME TOGGLE ── */
 (function() {
   const saved = localStorage.getItem('elvique_theme');
-  if (saved === 'light') document.body.classList.add('light-mode');
+  if (saved !== 'dark') document.body.classList.add('light-mode');
 })();
 
 function toggleTheme() {
